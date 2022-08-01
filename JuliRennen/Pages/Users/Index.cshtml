@@ -1,0 +1,84 @@
+﻿@page
+@model JuliRennen.Pages.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].ProfilePic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].SetPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].StaminaPref)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].SpeedPref)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].StrengthPref)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].StretchPref)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.User) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfilePic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SetPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaminaPref)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeedPref)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StrengthPref)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StretchPref)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

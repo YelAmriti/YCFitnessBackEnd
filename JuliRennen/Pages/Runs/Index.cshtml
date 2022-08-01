@@ -1,0 +1,48 @@
+﻿@page
+@model JuliRennen.Pages.Runs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Run[0].DateAndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Run[0].Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Run[0].Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Run) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

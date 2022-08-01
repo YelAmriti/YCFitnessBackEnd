@@ -1,0 +1,71 @@
+﻿@page
+@model JuliRennen.Pages.Routes.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Route</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Route.Name" class="control-label"></label>
+                <input asp-for="Route.Name" class="form-control" />
+                <span asp-validation-for="Route.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route.Photo" class="control-label"></label>
+                <input asp-for="Route.Photo" class="form-control" />
+                <span asp-validation-for="Route.Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route.Distance" class="control-label"></label>
+                <input asp-for="Route.Distance" class="form-control" />
+                <span asp-validation-for="Route.Distance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route.GPSxStart" class="control-label"></label>
+                <input asp-for="Route.GPSxStart" class="form-control" />
+                <span asp-validation-for="Route.GPSxStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route.GPSxEnd" class="control-label"></label>
+                <input asp-for="Route.GPSxEnd" class="form-control" />
+                <span asp-validation-for="Route.GPSxEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route.GPSyStart" class="control-label"></label>
+                <input asp-for="Route.GPSyStart" class="form-control" />
+                <span asp-validation-for="Route.GPSyStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route.GPSyEnd" class="control-label"></label>
+                <input asp-for="Route.GPSyEnd" class="form-control" />
+                <span asp-validation-for="Route.GPSyEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserID" class="control-label"></label>
+                <select asp-for="UserID" class="form-control" asp-items="Model.Options">
+                    <option value="">Select author</option>
+                </select>
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

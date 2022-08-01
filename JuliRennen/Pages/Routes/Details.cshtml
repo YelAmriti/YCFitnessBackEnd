@@ -1,0 +1,61 @@
+﻿@page
+@model JuliRennen.Pages.Routes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Route</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Route.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Route.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Route.Photo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Route.Photo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Route.Distance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Route.Distance)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Route.GPSxStart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Route.GPSxStart)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Route.GPSxEnd)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Route.GPSxEnd)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Route.GPSyStart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Route.GPSyStart)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Route.GPSyEnd)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Route.GPSyEnd)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Route?.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

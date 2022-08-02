@@ -36,9 +36,9 @@ namespace JuliRennen.Controllers
 
         // 
         // GET: /RunRoute/Welcome/ 
-
+        /*
         [HttpPost]
-        public JsonResult acceptRoute(string data)
+        public void acceptRoute(string data)
         {
             dynamic results = JsonConvert.DeserializeObject(data);
             Route route = new Route();
@@ -53,14 +53,44 @@ namespace JuliRennen.Controllers
 
             _context.Add(route);
             _context.SaveChanges();
-            return Json("Hello");
 
-        }
+        }*/
 
-        public string Index()
+        [HttpPost]
+        public string acceptRoute([FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
         {
-            return "Hello";
+            Route NewRoute = new Route();
+            NewRoute.Name = Name;
+            NewRoute.Photo = "Yes";
+            NewRoute.Distance = Convert.ToDouble(Distance);
+            NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
+            NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
+            NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
+            NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
+
+            _context.Add(NewRoute);
+            _context.SaveChanges();
+            return "Hello I'm Done";
         }
+
+        [HttpPost]
+        public ActionResult Index([FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        {
+            Route NewRoute = new Route();
+            NewRoute.Distance = Convert.ToDouble(Distance);
+            NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
+            NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
+            NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
+            NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
+            ViewBag.Message = NewRoute;
+            return View();
+        }
+
+/*
+        public ActionResult Create(Route userRoute)
+        {
+            return View("~/Pages/Routes/Create.cshtml", userRoute);
+        }*/
     }
 }
 

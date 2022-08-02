@@ -1,0 +1,20 @@
+﻿@using JuliRennen.Models
+@{
+    ViewBag.Title = "Make new Route";
+}
+
+@{
+    var data = ViewBag.Message;  
+}
+
+
+
+@using (Html.BeginForm("acceptRoute", "Route", FormMethod.Post)){
+    @Html.TextBox("Name")
+    @Html.TextBox("Distance", (string)ViewBag.Distance)
+    @Html.TextBox("GPSxStart", (string)ViewBag.GPSxStart)
+    @Html.TextBox("GPSxEnd", (string)ViewBag.GPSxEnd)
+    @Html.TextBox("GPSyStart", (string)ViewBag.GPSyStart)
+    @Html.TextBox("GPSyEnd", (string)ViewBag.GPSyEnd)
+    <input type="submit" value="Submit"/>
+}

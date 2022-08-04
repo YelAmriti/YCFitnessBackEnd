@@ -9662,24 +9662,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\omozm\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\arelb\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\omozm\\OneDrive\\Documenten\\YCFitApp\\YCFitnessBackEnd\\JuliRennen\\JuliRennen.csproj",
+      "projectUniqueName": "C:\\Users\\arelb\\Desktop\\FitnessAppRepos\\YCFitnessBackEnd\\JuliRennen\\JuliRennen.csproj",
       "projectName": "JuliRennen",
-      "projectPath": "C:\\Users\\omozm\\OneDrive\\Documenten\\YCFitApp\\YCFitnessBackEnd\\JuliRennen\\JuliRennen.csproj",
-      "packagesPath": "C:\\Users\\omozm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\omozm\\OneDrive\\Documenten\\YCFitApp\\YCFitnessBackEnd\\JuliRennen\\obj\\",
+      "projectPath": "C:\\Users\\arelb\\Desktop\\FitnessAppRepos\\YCFitnessBackEnd\\JuliRennen\\JuliRennen.csproj",
+      "packagesPath": "C:\\Users\\arelb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\arelb\\Desktop\\FitnessAppRepos\\YCFitnessBackEnd\\JuliRennen\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\omozm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\arelb\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9748,7 +9743,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

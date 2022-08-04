@@ -1,9 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using JuliRennen.Data;
+using System.Security.Claims;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
+{
+    options.Cookie.Name = "MyCookieAuth";
+    options.AccessDeniedPath = "/AccessDenied";
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly",
+        policy => policy.RequireClaim(ClaimTypes.Name, "admin"));
+});
+
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<JuliRennenContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JuliRennenContext") ?? throw new InvalidOperationException("Connection string 'JuliRennenContext' not found.")));
@@ -19,6 +33,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

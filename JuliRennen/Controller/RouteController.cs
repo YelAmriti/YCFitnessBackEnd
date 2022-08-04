@@ -64,7 +64,7 @@ namespace JuliRennen.Controllers
             Route NewRoute = new Route();
             //Create Developer User
             User dev = new User();
-            NewRoute.Name = FileLoc;
+            NewRoute.Name = Name;
             NewRoute.Photo = "Yes";
             NewRoute.Distance = Convert.ToDouble(Distance);
             NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JuliRennen.Data;
 using JuliRennen.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JuliRennen.Pages.Users
 {
+    [Authorize(Policy="AdminOnly")]
     public class IndexModel : PageModel
     {
         private readonly JuliRennen.Data.JuliRennenContext _context;

@@ -1,0 +1,31 @@
+﻿@page
+@model JuliRennen.Pages.Account.LoginModel
+@{
+}
+
+
+<div class="container border" style="padding:20px">
+    <form method="post">
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Credentials.Username"></label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="Credentials.Username" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Credentials.Password"></label>
+            </div>
+            <div class="col-5">
+                <input type="password" asp-for="Credentials.Password" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <input type="submit" class="btn btn-primary" value="Login" />
+            </div>            
+        </div>
+    </form>
+</div>

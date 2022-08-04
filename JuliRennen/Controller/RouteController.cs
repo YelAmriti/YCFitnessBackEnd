@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Globalization;
 using JuliRennen.Data;
 using Route = JuliRennen.Models.Route;
+using System.IO;
+
 
 namespace JuliRennen.Controllers
 {
@@ -57,10 +59,12 @@ namespace JuliRennen.Controllers
         }*/
 
         [HttpPost]
-        public string acceptRoute([FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        public void acceptRoute([FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();
-            NewRoute.Name = Name;
+            //Create Developer User
+            User dev = new User();
+            NewRoute.Name = FileLoc;
             NewRoute.Photo = "Yes";
             NewRoute.Distance = Convert.ToDouble(Distance);
             NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
@@ -70,7 +74,7 @@ namespace JuliRennen.Controllers
 
             _context.Add(NewRoute);
             _context.SaveChanges();
-            return "Hello I'm Done";
+           //Redirect to list of routes
         }
 
         [HttpPost]
@@ -86,6 +90,16 @@ namespace JuliRennen.Controllers
             return View();
         }
 
+        public ActionResult WelcomeDeveloper()
+        {
+            return View();
+        }
+
+        public ActionResult SeeRoutes()
+        {
+            ViewBag.Message = _context.Route;
+            return View();
+        }
 /*
         public ActionResult Create(Route userRoute)
         {

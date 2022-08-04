@@ -4,17 +4,41 @@
 }
 
 @{
-    var data = ViewBag.Message;  
+    var data = ViewBag.Message;
+    Layout = "_Layout";
 }
 
 
 
 @using (Html.BeginForm("acceptRoute", "Route", FormMethod.Post)){
-    @Html.TextBox("Name")
-    @Html.TextBox("Distance", (string)ViewBag.Distance)
-    @Html.TextBox("GPSxStart", (string)ViewBag.GPSxStart)
-    @Html.TextBox("GPSxEnd", (string)ViewBag.GPSxEnd)
-    @Html.TextBox("GPSyStart", (string)ViewBag.GPSyStart)
-    @Html.TextBox("GPSyEnd", (string)ViewBag.GPSyEnd)
+   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+   <div class="form-group">
+      <h3>Route Name:</h3>
+      @Html.TextBox("Name")
+   </div> 
+   <div class="form-group">
+      <h3>Distance:</h3>
+      @Html.TextBox("Distance", (string)ViewBag.Distance)
+   </div> 
+   <div class="form-group">
+       <h3>GPS X Coordinate #1:</h3>
+      @Html.TextBox("GPSxStart", (string)ViewBag.GPSxStart)
+   </div> 
+   <div class="form-group">
+       <h3>GPS X Coordinate #2:</h3>
+       @Html.TextBox("GPSxEnd", (string)ViewBag.GPSxEnd)
+   </div> 
+   <div class="form-group">
+       <h3>GPS Y Coordinate #1:</h3>
+         @Html.TextBox("GPSyStart", (string)ViewBag.GPSyStart)
+   </div> 
+   <div class="form-group">
+       <h3>GPS X Coordinate #2:</h3>
+          @Html.TextBox("GPSyEnd", (string)ViewBag.GPSyEnd)
+   </div> 
+    <div class="form-group">
+       <h3>Upload Route Photo:</h3>
+          <input type="file" name="FileLoc" value="Upload photo here" />
+   </div> 
     <input type="submit" value="Submit"/>
 }

@@ -59,7 +59,7 @@ namespace JuliRennen.Controllers
         }*/
 
         [HttpPost]
-        public void acceptRoute([FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
+        public ActionResult acceptRoute([FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();
             //Create Developer User
@@ -74,7 +74,7 @@ namespace JuliRennen.Controllers
 
             _context.Add(NewRoute);
             _context.SaveChanges();
-           //Redirect to list of routes
+            return View("WelcomeDeveloper");
         }
 
         [HttpPost]

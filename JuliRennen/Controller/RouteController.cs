@@ -36,28 +36,6 @@ namespace JuliRennen.Controllers
             return Json(run);
         }
 
-        // 
-        // GET: /RunRoute/Welcome/ 
-        /*
-        [HttpPost]
-        public void acceptRoute(string data)
-        {
-            dynamic results = JsonConvert.DeserializeObject(data);
-            Route route = new Route();
-            route.ID = 0;
-            route.Name = "User Chosen";
-            route.Photo = results.Photo;
-            route.Distance = Convert.ToDouble(results.Distance);
-            route.GPSxStart = Convert.ToDouble(results.GPSxStart);
-            route.GPSxEnd = Convert.ToDouble(results.GPSxEnd);
-            route.GPSyStart = Convert.ToDouble(results.GPSyStart);
-            route.GPSyEnd = Convert.ToDouble(results.GPSyEnd);
-
-            _context.Add(route);
-            _context.SaveChanges();
-
-        }*/
-
         [HttpPost]
         public ActionResult acceptRoute([FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
@@ -90,7 +68,7 @@ namespace JuliRennen.Controllers
             return View();
         }
 
-        public ActionResult WelcomeDeveloper()
+        public ActionResult WelcomeUser()
         {
             return View();
         }
@@ -100,11 +78,7 @@ namespace JuliRennen.Controllers
             ViewBag.Message = _context.Route;
             return View();
         }
-/*
-        public ActionResult Create(Route userRoute)
-        {
-            return View("~/Pages/Routes/Create.cshtml", userRoute);
-        }*/
+
     }
 }
 

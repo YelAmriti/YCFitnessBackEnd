@@ -36,20 +36,16 @@ namespace JuliRennen.Pages.Users
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            Console.WriteLine(_environment.ContentRootPath);
-            Console.WriteLine(Upload.FileName);
             string file = Path.Combine(_environment.ContentRootPath, "wwwroot", "images", Upload.FileName);
 
             if (!ModelState.IsValid || _context.User == null || User == null)
             {
-                Console.WriteLine("hier gaat het fout");
                 return Page();
             }
             using (var fileStream = new FileStream(file, FileMode.Create))
             {
                 await Upload.CopyToAsync(fileStream);
             }
-
 
             User.ProfilePic = Path.Combine("images", Upload.FileName);
             _context.User.Add(User);

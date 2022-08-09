@@ -1,11 +1,11 @@
 ﻿@page
-@model JuliRennen.Pages.Users.DetailsModel
+@model JuliRennen.Pages.Account.ProfileModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Profile";
 }
 
-<h1>Details</h1>
+<h1>Profile</h1>
 
 <div>
     <h4>User</h4>
@@ -17,11 +17,11 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User.UserName)
         </dd>
-        <dt class="col-sm-2">            
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.User.ProfilePic)
         </dt>
         <dd class="col-sm-10">
-            <img src="~/@Html.DisplayFor(model => model.User.ProfilePic)" class="img-thumbnail" alt="Profilepic" width="200" height="200" />
+            @Html.DisplayFor(model => model.User.ProfilePic)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.User.SetPassword)

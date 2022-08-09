@@ -39,7 +39,7 @@ namespace JuliRennen.Pages.Account
             {
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, s.UserName),
-                    new Claim(ClaimTypes.Email, s.EmailAddress)
+                    new Claim(ClaimTypes.Email, s.EmailAddress),
                 };
 
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");

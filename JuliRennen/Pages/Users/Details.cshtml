@@ -17,11 +17,11 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User.UserName)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2">            
             @Html.DisplayNameFor(model => model.User.ProfilePic)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.ProfilePic)
+            <img src="~/@Html.DisplayFor(model => model.User.ProfilePic)" class="img-thumbnail" alt="Profilepic" width="200" height="200" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.User.SetPassword)

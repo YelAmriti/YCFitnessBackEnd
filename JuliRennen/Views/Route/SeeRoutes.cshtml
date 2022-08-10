@@ -4,11 +4,18 @@
      var data = ViewBag.Message;
 }
 
-<h2> @foreach (var datas in data){
-        <h2>Route @datas.Name </h2>
-        <span> Route Name: @datas.Name</span>
-        <span> <br> Distance: @datas.Distance</span>
-        <span> <br> Route Photo: <br> <img src="@datas.Photo" class="img img-fluid" alt="My image" />  <br> </span>
-        <br> <br>
-    }
-</h2>
+
+<div class="card-columns">
+    @foreach (var datas in data){
+     <div class="card">
+         <div class="card-img"> 
+            <img class="card-img"src="@datas.Photo" /> 
+         </div>
+         <div class="card-body">
+           <h5 class="card-title"> Route Name: @datas.Name </h5>
+           <h5 class="card-text"> Distance: @datas.Distance</h5>
+         </div>
+     </div>
+        }
+</div>
+

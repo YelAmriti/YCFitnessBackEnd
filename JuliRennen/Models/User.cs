@@ -4,7 +4,7 @@
     {
         public int ID { get; set; }
         public string UserName { get; set; }
-        public string ProfilePic { get; set; }
+        public string? ProfilePic { get; set; }
         public string SetPassword { get; set; }
         public string EmailAddress { get; set; }
         public int PhoneNumber { get; set; }

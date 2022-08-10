@@ -1,0 +1,20 @@
+﻿
+@{
+     Layout = "_Layout";
+     var data = ViewBag.Message;
+}
+
+<div class="card-columns">
+    @foreach (var datas in data){
+     <div class="card">
+         <div class="card-img"> 
+            <img class="card-img"src="@datas.Photo" /> 
+         </div>
+         <div class="card-body">
+           <h5 class="card-title"> Route Name: @datas.Name </h5>
+           <h5 class="card-text"> Distance: @datas.Distance</h5>
+         </div>
+     </div>
+        }
+</div>
+

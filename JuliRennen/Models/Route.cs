@@ -1,9 +1,13 @@
-﻿namespace JuliRennen.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace JuliRennen.Models
 {
     public class Route
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        
+        [DataType(DataType.Upload)]
         public string Photo { get; set; }
         public double Distance { get; set; }
         public double GPSxStart { get; set; }

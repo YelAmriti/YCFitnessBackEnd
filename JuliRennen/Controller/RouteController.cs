@@ -58,7 +58,7 @@ namespace JuliRennen.Controllers
             {
                 Photo.CopyTo(FileStream);
             }
-            NewRoute.Photo = filepath;
+            NewRoute.Photo = "../images/" + Photo.FileName;
             _context.Add(NewRoute);
             _context.SaveChanges();
             return View("WelcomeUser");

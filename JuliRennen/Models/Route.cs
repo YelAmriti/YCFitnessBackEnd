@@ -14,6 +14,7 @@ namespace JuliRennen.Models
         public double GPSxEnd { get; set; }
         public double GPSyStart { get; set; }
         public double GPSyEnd { get; set; }
+    
         public User? User { get; set; }
 
     }

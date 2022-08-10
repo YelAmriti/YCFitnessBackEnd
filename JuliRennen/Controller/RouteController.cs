@@ -43,15 +43,16 @@ namespace JuliRennen.Controllers
         public ActionResult acceptRoute(IFormFile Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();
-            //Create Developer User
-            User dev = new User();
+
             NewRoute.Name = Name;
             NewRoute.Distance = Convert.ToDouble(Distance);
             NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
-            dev = GetUser();
+            var id = HttpContext.Session.GetInt32("UserID");
+            User s = _context.User.Find(id);
+            NewRoute.User = s;
 
             //Save Photo
             string upload = Path.Combine("wwwroot", "images");
@@ -61,39 +62,13 @@ namespace JuliRennen.Controllers
                 Photo.CopyTo(FileStream);
             }
             NewRoute.Photo = "../images/" + Photo.FileName;
-            NewRoute.User = dev;
 
-            _context.Add(NewRoute);
+            _context.Route.Add(NewRoute);
             _context.SaveChanges();
             ViewBag.Message = _context.Route;
             return View("SeeRoutes", ViewBag.Message);
         }
 
-        public User GetUser()
-        {
-            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-            var DBData = _context.User;
-            User dev = new User();
-            string userName = User.Identity.Name;
-
-            foreach (var users in DBData)
-            {
-                if (users.UserName == userName)
-                {
-                    dev.UserName = users.UserName;
-                    dev.SetPassword = users.SetPassword;
-                    dev.EmailAddress = users.EmailAddress;
-                    dev.StaminaPref = users.StaminaPref;
-                    dev.StretchPref = users.StretchPref;
-                    dev.PhoneNumber = users.PhoneNumber;
-                    dev.StaminaPref = users.StaminaPref;
-                    dev.ProfilePic = users.ProfilePic;
-                    dev.SpeedPref = users.SpeedPref;
-                    dev.StrengthPref = users.StrengthPref;
-                }
-            }
-            return dev;
-        }
 
         [HttpPost]
         public ActionResult Index([FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)

@@ -6,6 +6,8 @@ using System.Globalization;
 using JuliRennen.Data;
 using Route = JuliRennen.Models.Route;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Web;
 
 
 namespace JuliRennen.Controllers
@@ -36,49 +38,34 @@ namespace JuliRennen.Controllers
             return Json(run);
         }
 
-        // 
-        // GET: /RunRoute/Welcome/ 
-        /*
         [HttpPost]
-        public void acceptRoute(string data)
-        {
-            dynamic results = JsonConvert.DeserializeObject(data);
-            Route route = new Route();
-            route.ID = 0;
-            route.Name = "User Chosen";
-            route.Photo = results.Photo;
-            route.Distance = Convert.ToDouble(results.Distance);
-            route.GPSxStart = Convert.ToDouble(results.GPSxStart);
-            route.GPSxEnd = Convert.ToDouble(results.GPSxEnd);
-            route.GPSyStart = Convert.ToDouble(results.GPSyStart);
-            route.GPSyEnd = Convert.ToDouble(results.GPSyEnd);
-
-            _context.Add(route);
-            _context.SaveChanges();
-
-        }*/
-
-        [HttpPost]
-        public void acceptRoute([FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
+        public ActionResult acceptRoute(IFormFile Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();
             //Create Developer User
             User dev = new User();
             NewRoute.Name = Name;
-            NewRoute.Photo = "Yes";
             NewRoute.Distance = Convert.ToDouble(Distance);
             NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
 
+            //Save Photo
+            string upload = Path.Combine("wwwroot", "images");
+            string filepath = Path.Combine(upload, Photo.FileName);
+            using (Stream FileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+            {
+                Photo.CopyTo(FileStream);
+            }
+            NewRoute.Photo = "../images/" + Photo.FileName;
             _context.Add(NewRoute);
             _context.SaveChanges();
-           //Redirect to list of routes
+            return View("WelcomeUser");
         }
 
         [HttpPost]
-        public ActionResult Index([FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        public ActionResult Index([FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
         {
             Route NewRoute = new Route();
             NewRoute.Distance = Convert.ToDouble(Distance);
@@ -86,11 +73,13 @@ namespace JuliRennen.Controllers
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
+            NewRoute.Photo = Photo;
             ViewBag.Message = NewRoute;
+            //ViewData["Photo"] = NewRoute.Photo;
             return View();
         }
 
-        public ActionResult WelcomeDeveloper()
+        public ActionResult WelcomeUser()
         {
             return View();
         }
@@ -100,11 +89,7 @@ namespace JuliRennen.Controllers
             ViewBag.Message = _context.Route;
             return View();
         }
-/*
-        public ActionResult Create(Route userRoute)
-        {
-            return View("~/Pages/Routes/Create.cshtml", userRoute);
-        }*/
+
     }
 }
 

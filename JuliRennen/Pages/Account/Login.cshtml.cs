@@ -47,6 +47,7 @@ namespace JuliRennen.Pages.Account
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                HttpContext.Session.SetInt32("UserID", s.ID);
 
                 return RedirectToPage("/Index");
             }

@@ -6,10 +6,10 @@
 @{
     var data = ViewBag.Message;
     Layout = "_Layout";
+    var imagePath = ViewData["Photo"].ToString();
 }
 
-
-
+<img src="@imagePath" class="img img-fluid" />
 @using (Html.BeginForm("acceptRoute", "Route", FormMethod.Post)){
    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
    <div class="form-group">
@@ -40,5 +40,7 @@
        <h3>Upload Route Photo:</h3>
           <input type="file" name="FileLoc" value="Upload photo here" />
    </div> 
+
+    
     <input type="submit" value="Submit"/>
 }

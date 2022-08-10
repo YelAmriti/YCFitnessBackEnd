@@ -56,7 +56,7 @@ namespace JuliRennen.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index([FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        public ActionResult Index([FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
         {
             Route NewRoute = new Route();
             NewRoute.Distance = Convert.ToDouble(Distance);
@@ -64,7 +64,9 @@ namespace JuliRennen.Controllers
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
+            NewRoute.Photo = Photo;
             ViewBag.Message = NewRoute;
+            ViewData["Photo"] = NewRoute.Photo;
             return View();
         }
 

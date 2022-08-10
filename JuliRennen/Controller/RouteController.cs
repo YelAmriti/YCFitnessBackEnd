@@ -66,7 +66,7 @@ namespace JuliRennen.Controllers
             _context.Route.Add(NewRoute);
             _context.SaveChanges();
             ViewBag.Message = _context.Route;
-            return View("SeeRoutes", ViewBag.Message);
+            return View("SeeRoutesRedirect", ViewBag.Message);
         }
 
 
@@ -99,10 +99,10 @@ namespace JuliRennen.Controllers
         }
 
         [Authorize]
-        public ActionResult SeeRoutes(dynamic data)
+        public ActionResult SeeRoutesRedirect(dynamic data)
         {
             ViewBag.Message = data;
-            return View();
+            return View("SeeRoutes");
         }
 
     }

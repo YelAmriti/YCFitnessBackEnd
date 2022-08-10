@@ -8,7 +8,8 @@ using Route = JuliRennen.Models.Route;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace JuliRennen.Controllers
 {
@@ -42,14 +43,16 @@ namespace JuliRennen.Controllers
         public ActionResult acceptRoute(IFormFile Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();
-            //Create Developer User
-            User dev = new User();
+
             NewRoute.Name = Name;
             NewRoute.Distance = Convert.ToDouble(Distance);
             NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
+            var id = HttpContext.Session.GetInt32("UserID");
+            User s = _context.User.Find(id);
+            NewRoute.User = s;
 
             //Save Photo
             string upload = Path.Combine("wwwroot", "images");
@@ -59,10 +62,13 @@ namespace JuliRennen.Controllers
                 Photo.CopyTo(FileStream);
             }
             NewRoute.Photo = "../images/" + Photo.FileName;
-            _context.Add(NewRoute);
+
+            _context.Route.Add(NewRoute);
             _context.SaveChanges();
-            return View("WelcomeUser");
+            ViewBag.Message = _context.Route;
+            return View("SeeRoutes", ViewBag.Message);
         }
+
 
         [HttpPost]
         public ActionResult Index([FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
@@ -75,18 +81,27 @@ namespace JuliRennen.Controllers
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
             NewRoute.Photo = Photo;
             ViewBag.Message = NewRoute;
-            //ViewData["Photo"] = NewRoute.Photo;
+            
             return View();
         }
 
+        [Authorize]
         public ActionResult WelcomeUser()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult SeeRoutes()
         {
             ViewBag.Message = _context.Route;
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult SeeRoutes(dynamic data)
+        {
+            ViewBag.Message = data;
             return View();
         }
 

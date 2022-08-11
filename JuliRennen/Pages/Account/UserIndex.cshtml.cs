@@ -43,5 +43,13 @@ namespace JuliRennen.Pages.Account
 
             return Page();
         }
+
+        public async Task<IActionResult> OnPostLogOut()
+        {
+            Response.Cookies.Delete(".AspNetCore.Session");
+            Response.Cookies.Delete("MyCookieAuth");
+
+            return RedirectToPage("/Account/Login");
+        }
     }
 }

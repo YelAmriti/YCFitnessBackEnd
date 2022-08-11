@@ -49,7 +49,7 @@ namespace JuliRennen.Pages.Account
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
                 HttpContext.Session.SetInt32("UserID", s.ID);
 
-                return RedirectToPage("/Index");
+                return RedirectToPage("/Account/UserIndex");
             }
             if (Credentials.Username == "admin" && Credentials.Password == "password")
             {

@@ -10,6 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace JuliRennen.Controllers
 {
@@ -71,7 +72,7 @@ namespace JuliRennen.Controllers
 
 
         [HttpPost]
-        public ActionResult Index([FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        public ActionResult Index([FromForm] string PhotoData, [FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
         {
             Route NewRoute = new Route();
             NewRoute.Distance = Convert.ToDouble(Distance);
@@ -79,11 +80,30 @@ namespace JuliRennen.Controllers
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
-            NewRoute.Photo = Photo;
+            if (PhotoData != null)
+            {
+                string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
+                Image image = MakeImage(base64);
+                string upload = Path.Combine("wwwroot", "images");
+                string filepath = Path.Combine(upload, Photo);
+                image.Save(filepath);
+            }    
+            NewRoute.Photo = PhotoData;
             ViewBag.Message = NewRoute;
             
             return View();
         }
+
+        public Image MakeImage(string base64)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64);
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
+        }
+      
 
         [Authorize]
         public ActionResult WelcomeUser()

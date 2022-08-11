@@ -38,7 +38,7 @@
           @Html.TextBox("GPSyEnd", (string)ViewBag.GPSyEnd)
    </div> 
     <span>Select File:</span>
-        @Html.TextBoxFor(m => m.Photo, new { type = "file"})
+        <input type="text" name="Photo" value="@ViewBag.Photo" style="" />
      <br/>
 
     

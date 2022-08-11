@@ -80,7 +80,8 @@ namespace JuliRennen.Controllers
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
-            if (PhotoData != null)
+
+            if (PhotoData != null && Photo != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
                 Image image = MakeImage(base64);

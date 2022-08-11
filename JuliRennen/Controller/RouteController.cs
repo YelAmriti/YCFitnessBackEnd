@@ -72,7 +72,7 @@ namespace JuliRennen.Controllers
 
 
         [HttpPost]
-        public ActionResult Index([FromForm] string PhotoData, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        public ActionResult Index([FromForm] string PhotoData, [FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
         {
             Route NewRoute = new Route();
             NewRoute.Distance = Convert.ToDouble(Distance);
@@ -85,7 +85,7 @@ namespace JuliRennen.Controllers
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
                 Image image = MakeImage(base64);
                 string upload = Path.Combine("wwwroot", "images");
-                string filepath = Path.Combine(upload, image.PropertyItems.ToString() + ".png");
+                string filepath = Path.Combine(upload, Photo);
                 image.Save(filepath);
             }    
             NewRoute.Photo = PhotoData;

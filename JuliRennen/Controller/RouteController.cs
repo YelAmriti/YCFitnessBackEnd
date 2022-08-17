@@ -41,7 +41,7 @@ namespace JuliRennen.Controllers
         }
 
         [HttpPost]
-        public ActionResult acceptRoute(IFormFile Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
+        public ActionResult acceptRoute([FromForm] string Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();
 
@@ -56,13 +56,13 @@ namespace JuliRennen.Controllers
             NewRoute.User = s;
 
             //Save Photo
-            string upload = Path.Combine("wwwroot", "images");
+            /*string upload = Path.Combine("wwwroot", "images");
             string filepath = Path.Combine(upload, Photo.FileName);
             using (Stream FileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
             {
                 Photo.CopyTo(FileStream);
-            }
-            NewRoute.Photo = "../images/" + Photo.FileName;
+            }*/
+            NewRoute.Photo = Photo; 
 
             _context.Route.Add(NewRoute);
             _context.SaveChanges();
@@ -72,7 +72,7 @@ namespace JuliRennen.Controllers
 
 
         [HttpPost]
-        public ActionResult Index([FromForm] string PhotoData, [FromForm] string Photo, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        public ActionResult Index([FromForm] string PhotoData, [FromForm] string fileName, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
         {
             Route NewRoute = new Route();
             NewRoute.Distance = Convert.ToDouble(Distance);
@@ -80,17 +80,18 @@ namespace JuliRennen.Controllers
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
-
-            if (PhotoData != null && Photo != null)
+            string filepath = ".";
+            if (PhotoData != null && fileName != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
                 Image image = MakeImage(base64);
                 string upload = Path.Combine("wwwroot", "images");
-                string filepath = Path.Combine(upload, Photo);
+                filepath = Path.Combine(upload, fileName);
                 image.Save(filepath);
             }    
-            NewRoute.Photo = PhotoData;
+            NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;
+            TempData["Photo"] = filepath;
             
             return View();
         }

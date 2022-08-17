@@ -62,7 +62,7 @@ namespace JuliRennen.Controllers
             {
                 Photo.CopyTo(FileStream);
             }*/
-            NewRoute.Photo = "../images/" + Photo; 
+            NewRoute.Photo = Photo; 
 
             _context.Route.Add(NewRoute);
             _context.SaveChanges();
@@ -84,7 +84,6 @@ namespace JuliRennen.Controllers
             if (PhotoData != null && fileName != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
-                fileName = fileName.Substring(12);
                 Image image = MakeImage(base64);
                 string upload = Path.Combine("wwwroot", "images");
                 filepath = Path.Combine(upload, fileName);
@@ -92,6 +91,7 @@ namespace JuliRennen.Controllers
             }    
             NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;
+            TempData["Photo"] = filepath;
             
             return View();
         }

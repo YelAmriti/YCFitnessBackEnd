@@ -7,7 +7,7 @@
 @{
     var data = ViewBag.Message;
     Layout = "_Layout";
-    //var imagePath = ViewData["Photo"].ToString();
+    var Photo = TempData["Photo"].ToString();
 }
 
 
@@ -37,10 +37,10 @@
        <h3>GPS X Coordinate #2:</h3>
           @Html.TextBox("GPSyEnd", (string)ViewBag.GPSyEnd)
    </div> 
-    <span>Select File:</span>
-        <input type="text" name="Photo" value="@ViewBag.Photo" style="" />
-     <br/>
-
+  <div class="form-group">
+      <h3>Filename of photo</h3>
+        @Html.TextBox("Photo",Photo)
+    </div>
     
     <input type="submit" value="Submit"/>
 }

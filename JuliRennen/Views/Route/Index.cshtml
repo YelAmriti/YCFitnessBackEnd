@@ -7,7 +7,7 @@
 @{
     var data = ViewBag.Message;
     Layout = "_Layout";
-    var Photo = TempData["Photo"].ToString();
+    //var Photo = TempData["Photo"].ToString();
 }
 
 
@@ -39,7 +39,7 @@
    </div> 
   <div class="form-group">
       <h3>Filename of photo</h3>
-        @Html.TextBox("Photo",Photo)
+        @Html.TextBox("Photo","")
     </div>
     
     <input type="submit" value="Submit"/>

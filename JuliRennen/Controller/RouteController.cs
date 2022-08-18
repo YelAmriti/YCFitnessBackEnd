@@ -91,7 +91,7 @@ namespace JuliRennen.Controllers
             }    
             NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;
-            TempData["Photo"] = filepath;
+            //TempData["Photo"] = filepath;
             
             return View();
         }

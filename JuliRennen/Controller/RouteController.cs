@@ -84,8 +84,8 @@ namespace JuliRennen.Controllers
             if (PhotoData != null && fileName != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
-                Image image = MakeImage(base64);
-                string upload = Path.Combine("wwwroot", "images");
+               // Image image = MakeImage(base64);
+                //string upload = Path.Combine("wwwroot", "images");
                 //filepath = Path.Combine(upload, fileName);
                 //image.Save(filepath);
             }    

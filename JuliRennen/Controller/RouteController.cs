@@ -62,13 +62,12 @@ namespace JuliRennen.Controllers
             {
                 Photo.CopyTo(FileStream);
             }*/
-            NewRoute.Photo = Photo;
+            NewRoute.Photo = Photo; 
 
-            //_context.Route.Add(NewRoute);
-            //_context.SaveChanges();
-            //ViewBag.Message = _context.Route;
-            //return View("SeeRoutesRedirect", ViewBag.Message);
-            return View("SeeRoutesRedirect");
+            _context.Route.Add(NewRoute);
+            _context.SaveChanges();
+            ViewBag.Message = _context.Route;
+            return View("SeeRoutesRedirect", ViewBag.Message);
         }
 
 

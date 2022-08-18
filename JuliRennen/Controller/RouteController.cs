@@ -81,14 +81,14 @@ namespace JuliRennen.Controllers
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
             string filepath = ".";
-            if (PhotoData != null && fileName != null)
+           /* if (PhotoData != null && fileName != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
                 Image image = MakeImage(base64);
                 string upload = Path.Combine("wwwroot", "images");
                 filepath = Path.Combine(upload, fileName);
                 image.Save(filepath);
-            }    
+            }    */
             NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;
             TempData["Photo"] = filepath;

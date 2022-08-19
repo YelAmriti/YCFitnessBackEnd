@@ -85,7 +85,7 @@ namespace JuliRennen.Controllers
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
             string filepath = ".";
-            bool test = true;
+            bool test = false;
             if (PhotoData != null && fileName != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);

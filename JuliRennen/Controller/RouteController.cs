@@ -98,7 +98,7 @@ namespace JuliRennen.Controllers
 
         public void MakeImage(string base64)
         {
-
+            base64 = HttpUtility.UrlDecode(base64);
             byte[] imageBytes = Convert.FromBase64String(base64);
             
             /* using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))

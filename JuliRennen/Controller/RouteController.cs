@@ -62,7 +62,7 @@ namespace JuliRennen.Controllers
             _context.Route.Add(NewRoute);
             _context.SaveChanges();
             ViewBag.Message = _context.Route;
-            //return View("SeeRoutesRedirect", ViewBag.Message);
+            return View("SeeRoutesRedirect", ViewBag.Message);
         }
 
 

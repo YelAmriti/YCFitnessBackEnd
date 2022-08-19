@@ -11,16 +11,20 @@ using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
+using Microsoft.AspNetCore.Hosting;
 
 namespace JuliRennen.Controllers
 {
     public class RouteController : Controller
     {
         private JuliRennenContext _context;
+        private IWebHostEnvironment Environment;
 
-        public RouteController(JuliRennenContext context)
+
+        public RouteController(JuliRennenContext context, IWebHostEnvironment _environment)
         {
             _context = context;
+            Environment = _environment;
         }
         // 
         // GET: RunRoute/
@@ -85,7 +89,8 @@ namespace JuliRennen.Controllers
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
                 Image image = MakeImage(base64);
-                string upload = Path.Combine("wwwroot", "images");
+                string wwwPath = this.Environment.WebRootPath;
+                string upload = Path.Combine(wwwPath, "images");
                 filepath = Path.Combine(upload, fileName);
                 image.Save(filepath);
             }    

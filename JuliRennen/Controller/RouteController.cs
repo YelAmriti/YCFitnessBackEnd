@@ -84,7 +84,7 @@ namespace JuliRennen.Controllers
             if (PhotoData != null && fileName != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
-                //Image image = MakeImage(PhotoData);
+                /*Image image =*/ MakeImage(PhotoData);
                 string upload = Path.Combine("wwwroot", "images");
                 filepath = Path.Combine(upload, fileName);
                 //image.Save(filepath);
@@ -96,14 +96,14 @@ namespace JuliRennen.Controllers
             return View();
         }
 
-        public Image MakeImage(string base64)
+        public void MakeImage(string base64)
         {
             byte[] imageBytes = Convert.FromBase64String(base64);
-            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
-            {
-                Image image = Image.FromStream(ms, true);
-                return image;
-            }
+            /* using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+             {
+                 Image image = Image.FromStream(ms, true);
+                 return image;
+             }*/
         }
       
 

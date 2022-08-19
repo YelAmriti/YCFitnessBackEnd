@@ -93,10 +93,10 @@ namespace JuliRennen.Controllers
                 filepath = Path.Combine(upload, fileName);
                 filepath = Path.Combine(upload, fileName);
                 byte[] newBytes = Convert.FromBase64String(base64);
-                using (var ms = new MemoryStream(newBytes, 0, newBytes.Length))
+                /*using (var ms = new MemoryStream(newBytes, 0, newBytes.Length))
                 {
                     Image image = Image.FromStream(ms, true);
-                }
+                }*/
                 //image.Save(filepath);
             }    
             NewRoute.Photo = filepath;

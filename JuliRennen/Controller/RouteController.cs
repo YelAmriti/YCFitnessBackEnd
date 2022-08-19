@@ -85,18 +85,21 @@ namespace JuliRennen.Controllers
             NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
             NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
             string filepath = ".";
+            bool test = true;
             if (PhotoData != null && fileName != null)
             {
                 string base64 = PhotoData.Substring(PhotoData.LastIndexOf(',') + 1);
-               // Image image = MakeImage(base64);
-               // string wwwPath = this.Environment.WebRootPath;
-               // string upload = Path.Combine(wwwPath, "images");
-                //filepath = Path.Combine(upload, fileName);
+                // Image image = MakeImage(base64);
+                string upload = Path.Combine("wwwroot", "images");
+                filepath = Path.Combine(upload, fileName);
+                filepath = Path.Combine(upload, fileName);
+                Span<byte> buffer = new Span<byte>(new byte[base64.Length]);
+                test = Convert.TryFromBase64String(base64, buffer , out int bytesParsed);
                 //image.Save(filepath);
             }    
             NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;
-            TempData["Photo"] = PhotoData;
+            TempData["Photo"] = test;
             
             return View();
         }
@@ -104,7 +107,7 @@ namespace JuliRennen.Controllers
         public void MakeImage(string base64)
         {
             base64 = HttpUtility.UrlDecode(base64);
-            byte[] imageBytes = Convert.FromBase64String(base64);
+           // byte[] imageBytes = Convert.TryFromBase64String(base64);
             
             /* using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
              {

@@ -45,7 +45,7 @@ namespace JuliRennen.Controllers
         }
 
         [HttpPost]
-        public ActionResult acceptRoute([FromForm] string Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
+        public void acceptRoute([FromForm] string Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();
 
@@ -62,7 +62,7 @@ namespace JuliRennen.Controllers
             _context.Route.Add(NewRoute);
             _context.SaveChanges();
             ViewBag.Message = _context.Route;
-            return View("SeeRoutesRedirect", ViewBag.Message);
+            //return View("SeeRoutesRedirect", ViewBag.Message);
         }
 
 

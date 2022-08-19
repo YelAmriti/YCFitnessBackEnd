@@ -95,11 +95,15 @@ namespace JuliRennen.Controllers
                 filepath = Path.Combine(upload, fileName);
                 Span<byte> buffer = new Span<byte>(new byte[base64.Length]);
                 test = Convert.TryFromBase64String(base64, buffer , out int bytesParsed);
+                if(test == true)
+                {
+                    filepath = "YES ITS RTRUE!!!";
+                }
                 //image.Save(filepath);
             }    
             NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;
-            TempData["Photo"] = test;
+            TempData["Photo"] = filepath;
             
             return View();
         }

@@ -58,9 +58,7 @@ namespace JuliRennen.Controllers
             var id = HttpContext.Session.GetInt32("UserID");
             User s = _context.User.Find(id);
             NewRoute.User = s;
-            Photo = "../" + Photo.Substring(Photo.LastIndexOf('t') + 1);
             NewRoute.Photo = Photo; 
-
             _context.Route.Add(NewRoute);
             _context.SaveChanges();
             ViewBag.Message = _context.Route;

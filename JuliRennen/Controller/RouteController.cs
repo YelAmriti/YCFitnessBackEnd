@@ -98,10 +98,14 @@ namespace JuliRennen.Controllers
 
         public void MakeImage(string base64)
         {
-            int a = 2;
-            int b = 3;
-            int c = a + b;
-            //byte[] imageBytes = Convert.FromBase64String(base64);
+            try
+            {
+                byte[] imageBytes = Convert.FromBase64String(base64);
+            }
+            catch(Exception e)
+            {
+                throw (e);
+            }
             /* using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
              {
                  Image image = Image.FromStream(ms, true);

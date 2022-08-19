@@ -87,7 +87,6 @@ namespace JuliRennen.Controllers
                 Image image = MakeImage(PhotoData);
                 string upload = Path.Combine("wwwroot", "images");
                 filepath = Path.Combine(upload, fileName);
-                filepath = "hello";
                 image.Save(filepath);
             }    
             NewRoute.Photo = filepath;

@@ -58,14 +58,7 @@ namespace JuliRennen.Controllers
             var id = HttpContext.Session.GetInt32("UserID");
             User s = _context.User.Find(id);
             NewRoute.User = s;
-
-            //Save Photo
-            /*string upload = Path.Combine("wwwroot", "images");
-            string filepath = Path.Combine(upload, Photo.FileName);
-            using (Stream FileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
-            {
-                Photo.CopyTo(FileStream);
-            }*/
+            Photo = "../" + Photo.Substring(Photo.LastIndexOf('t') + 1);
             NewRoute.Photo = Photo; 
 
             _context.Route.Add(NewRoute);
@@ -94,11 +87,7 @@ namespace JuliRennen.Controllers
                 filepath = Path.Combine(upload, fileName);
                 byte[] newBytes = Convert.FromBase64String(base64);
                 System.IO.File.WriteAllBytes(filepath, newBytes);
-                /*using (var ms = new MemoryStream(newBytes, 0, newBytes.Length))
-                {
-                    Image image = Image.FromStream(ms, true);
-                }*/
-                //image.Save(filepath);
+
             }
             NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;

@@ -33,15 +33,8 @@ namespace JuliRennen.Controllers
         public JsonResult GetRoute()
         {
             //Use context to get data from DB and send as JSON
-            Route run = new Route();
-            run.Name = "Arel";
-            run.ID = 2;
-            run.GPSxStart = 52.45;
-            run.GPSxEnd = 53.45;
-            run.GPSyStart = 43.34;
-            run.GPSyEnd = 34.32;
-            run.Photo = "Hi";
-            return Json(run);
+            
+            return Json(_context.Route);
         }
 
         [HttpPost]

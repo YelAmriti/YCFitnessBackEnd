@@ -38,6 +38,24 @@ namespace JuliRennen.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetRoute(string data)
+        {
+            dynamic results = JsonConvert.DeserializeObject(data);
+            //Use context to get data from DB and send as JSON
+            foreach (Route route in _context.Route)
+            {
+                if(route.Name == results.name.ToString())
+                {
+                    return Json(route);
+                }
+            }
+            return Json("No Route found");
+        }
+
+
+
+
+        [HttpPost]
         public ActionResult acceptRoute([FromForm] string Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
             Route NewRoute = new Route();

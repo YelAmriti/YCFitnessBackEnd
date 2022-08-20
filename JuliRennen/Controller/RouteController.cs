@@ -30,7 +30,7 @@ namespace JuliRennen.Controllers
         // GET: RunRoute/
         //Returns route data to map
         [HttpPost]
-        public JsonResult returnRoute(string userID)
+        public JsonResult GetRoute()
         {
             //Use context to get data from DB and send as JSON
             Route run = new Route();

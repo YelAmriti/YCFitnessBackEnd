@@ -40,11 +40,10 @@ namespace JuliRennen.Controllers
         [HttpPost]
         public JsonResult GetSpecificRoute(string data)
         {
-            dynamic results = JsonConvert.DeserializeObject(data);
-            //Use context to get data from DB and send as JSON
+
             foreach (Route route in _context.Route)
             {
-                if(route.Name == results.name.ToString())
+                if(route.Name == data)
                 {
                     return Json(route);
                 }

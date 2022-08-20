@@ -3,18 +3,20 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:58325/",
-      "sslPort": 44368
+      "applicationUrl": "http://localhost:51535",
+      "sslPort": 0
     }
   },
   "profiles": {
     "JuliRennen": {
       "commandName": "Project",
+      "dotnetRunMessages": true,
       "launchBrowser": true,
+      "applicationUrl": "http://localhost:5234",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": true
+      }
+
     },
     "IIS Express": {
       "commandName": "IISExpress",

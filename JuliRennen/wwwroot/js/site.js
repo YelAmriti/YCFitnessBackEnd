@@ -2,6 +2,13 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-var imageSrc = $(".card-img").find('img').attr("src");
-imageSrc = imageSrc.replace(';', '');
-$(".card-img").attr("src", imageSrc);
+
+/* JS code for seeRoute page */
+
+$(document).ready(function () {
+    $('.card-img').each(function () {
+        $('img').each(function () {
+            $(this).attr('src', $(this).attr('src').replace('wwwroot', '..'));
+        })
+    })
+});

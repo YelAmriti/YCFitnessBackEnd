@@ -25,7 +25,7 @@ namespace JuliRennen.Pages.Account
         {
             if (id == null || _context.User == null)
             {
-                return NotFound();
+                return RedirectToPage("/Account/Login");
             }
 
             var user = await _context.User.FirstOrDefaultAsync(m => m.ID == id);

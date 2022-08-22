@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using JuliRennen.Data;
 using JuliRennen.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JuliRennen.Pages.Runs
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly JuliRennen.Data.JuliRennenContext _context;
@@ -24,6 +26,11 @@ namespace JuliRennen.Pages.Runs
         public List<SelectListItem> OptionsR { get; set; }
         public IActionResult OnGet()
         {
+            if (HttpContext.Session.GetInt32("UserID") == null || _context.User == null)
+            {
+                return RedirectToPage("/Account/Login");
+            }
+
             OptionsU = _context.User.Select(a =>
                                           new SelectListItem
                                           {
@@ -52,12 +59,13 @@ namespace JuliRennen.Pages.Runs
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.Run == null || Run == null)
+            if (_context.Run == null || Run == null)
             {
                 return Page();
             }
-
-            User s = _context.User.Find(Int32.Parse(UserID));
+            
+            User s = _context.User.Find(HttpContext.Session.GetInt32("UserID"));
+            Console.WriteLine(HttpContext.Session.GetInt32("UserID"));
             Run.User = s;
             JuliRennen.Models.Route t = _context.Route.Find(Int32.Parse(RouteID));
             Run.Route = t;

@@ -30,7 +30,12 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<JuliRennenContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JuliRennenContext") ?? throw new InvalidOperationException("Connection string 'JuliRennenContext' not found.")));
-
+builder.Services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod());
+            });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,7 +46,7 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseCors(options => options.AllowAnyOrigin());
 app.UseAuthentication();
 
 app.UseAuthorization();

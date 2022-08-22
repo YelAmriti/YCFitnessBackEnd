@@ -22,3 +22,12 @@ window.onclick = function (event) {
         }
     }
 }
+/* JS code for seeRoute page */
+
+$(document).ready(function () {
+    $('.card-img').each(function () {
+        $('img').each(function () {
+            $(this).attr('src', $(this).attr('src').replace('wwwroot', '..'));
+        })
+    })
+});

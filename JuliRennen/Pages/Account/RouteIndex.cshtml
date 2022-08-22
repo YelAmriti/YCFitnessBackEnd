@@ -1,0 +1,28 @@
+﻿@page
+@model JuliRennen.Pages.Routes.RouteIndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<div class="card-columns">
+    @foreach (var item in Model.Route){
+     <div class="card">
+         <div class="card-img"> 
+            <img class="card-img"src="@item.Photo "/> 
+         </div>
+         <div class="card-body">
+           <h5 class="card-title"> Route Name: @item.Name </h5>
+           <h5 class="card-text"> Distance: @item.Distance km</h5>
+         </div>
+     </div>
+        }
+</div>
+
+

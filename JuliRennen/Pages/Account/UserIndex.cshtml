@@ -7,70 +7,81 @@
 
 <h1>User home</h1>
 
-<div>
-    <h4>Welcome back @Html.DisplayFor(model => model.User.UserName)!</h4>
+<h4>Welcome back @Html.DisplayFor(model => model.User.UserName)!</h4>
+
+<div style="display:flex;">
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.UserName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.ProfilePic)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="~/@Html.DisplayFor(model => model.User.ProfilePic)" class="img-thumbnail" alt="Profilepic" width="200" height="200" />
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.SetPassword)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.SetPassword)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.EmailAddress)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.EmailAddress)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.PhoneNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.PhoneNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.StaminaPref)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.StaminaPref)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.SpeedPref)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.SpeedPref)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.StrengthPref)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.StrengthPref)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.StretchPref)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.StretchPref)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.User?.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-    <form method="post" asp-page-handler="LogOut">
-        <button class="btn btn-dark">Log out</button>
-    </form>
+
+    <div class="card" style="width: 30rem;">
+        <img src="~/@Html.DisplayFor(model => model.User.ProfilePic)" class="car-img-top" alt="Profilepic" />
+        <div class="card-body">
+            <h5 class="card-title"><b>@Html.DisplayFor(model => model.User.UserName)</b></h5>
+            <p class="card-text">Ruimte voor statistieken, info, tips, etc.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <dt>
+                    Speed tips |
+                    @Html.DisplayFor(model => model.User.SpeedPref)
+                </dt> 
+            </li>
+            <li class="list-group-item">
+                <dt>
+                    Stamina tips |
+                    @Html.DisplayFor(model => model.User.StaminaPref)
+                </dt> 
+            </li>
+            <li class="list-group-item">
+                <dt>
+                    Strength tips |
+                    @Html.DisplayFor(model => model.User.StrengthPref)
+                </dt> 
+            </li>
+            <li class="list-group-item">
+                <dt>
+                    Stretch tips |
+                    @Html.DisplayFor(model => model.User.StretchPref)
+                </dt> 
+            </li>
+        </ul>
+        <div class="card-body" style="display: flex;">
+            <form method="post" asp-page-handler="LogOut">
+                <button class="btn btn-dark">Uitloggen</button>
+            </form>            
+            <a asp-page="./UserEdit" asp-route-id="@Model.User.ID">
+                  Bewerk profiel              
+            </a>             
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Route[0].Photo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Route[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Route[0].Distance)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Route) {
+                <tr>
+                    <td>
+                        <img class="card-img"src="@item.Photo" style="height: 100px; width: 150px;"/>
+                    </td>            
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Distance)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

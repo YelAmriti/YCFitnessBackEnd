@@ -19,18 +19,23 @@ namespace JuliRennen.Pages.Account
             _context = context;
         }
 
-      public User User { get; set; } = default!; 
-
+        public User User { get; set; } = default!;
+        public IList<JuliRennen.Models.Route> Route { get; set; } = default!;
         public async Task<IActionResult> OnGetAsync()
         {
             var id = HttpContext.Session.GetInt32("UserID");
 
             if (id == null || _context.User == null)
             {
-                return NotFound();
+                return RedirectToPage("/Account/Login");
             }
 
             var user = await _context.User.FirstOrDefaultAsync(m => m.ID == id);
+
+            if (_context.Route != null)
+            {
+                Route = await _context.Route.Where(route => route.User.ID == id).ToListAsync();
+            }
 
             if (user == null)
             {

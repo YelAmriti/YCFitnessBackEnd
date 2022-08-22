@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using JuliRennen.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JuliRennen.Pages
 {
@@ -14,9 +16,11 @@ namespace JuliRennen.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public User User { get; set; } = default!;
+        public async Task<IActionResult> OnGetAsync()
         {
 
+            return Page();
         }
     }
 }

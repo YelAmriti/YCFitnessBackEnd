@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - JuliRennen</title>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JuliRennen.styles.css" asp-append-version="true" />
@@ -20,13 +21,29 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Users/Index">Users</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Routes/Index">Routes</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Account/UserIndex">Profiel</a>
+                        </li>
+                        <li class="dropdown">
+                            <a onclick="myFunction()" class="dropbtn">Dropdown</a>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a class="nav-link text-dark"  href="http://localhost:5234/Route/SeeRoutes">Route maken</a>
+                                <a class="nav-link text-dark"  href="http://localhost:5234/Route/SeeRoutes">Routes</a>
+                            </div>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="http://localhost:5234/Route/SeeRoutes">Routes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="http://localhost:5234/Route/SeeRoutes">Route maken</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Runs/Index">Runs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Runs/Create">Run maken</a>
                         </li> 
                     </ul>
                 </div>

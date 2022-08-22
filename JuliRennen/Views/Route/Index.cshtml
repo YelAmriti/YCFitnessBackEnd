@@ -8,6 +8,7 @@
     var data = ViewBag.Message;
     Layout = "_Layout";
     var Photo = TempData["Photo"].ToString();
+    var RouteName = TempData["RouteName"].ToString();
 }
 
 
@@ -15,7 +16,7 @@
    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
    <div class="form-group">
       <h3>Route Name:</h3>
-      @Html.TextBox("Name")
+      @Html.TextBox("Name", RouteName)
    </div> 
    <div class="form-group">
       <h3>Distance:</h3>

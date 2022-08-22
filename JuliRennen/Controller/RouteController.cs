@@ -57,16 +57,34 @@ namespace JuliRennen.Controllers
         [HttpPost]
         public ActionResult acceptRoute([FromForm] string Photo, [FromForm] string Name, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd, [FromForm] string FileLoc)
         {
+            
             Route NewRoute = new Route();
 
-            NewRoute.Name = Name;
-            NewRoute.Distance = Convert.ToDouble(Distance);
-            NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
-            NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
-            NewRoute.GPSxStart = Convert.ToDouble(GPSxStart);
-            NewRoute.GPSxEnd = Convert.ToDouble(GPSxEnd);
+
             var id = HttpContext.Session.GetInt32("UserID");
-            User s = _context.User.Find(id);
+            var s = _context.User.Find(id);
+
+            if (_context.Route.Any(o => o.Name == Name)){
+                var result = _context.Route.SingleOrDefault((o => o.Name == Name));
+                result.Name = Name;
+                result.Distance = Double.Parse(Distance, CultureInfo.InvariantCulture);
+                result.GPSyStart = Double.Parse(GPSyStart, CultureInfo.InvariantCulture);
+                result.GPSyEnd = Double.Parse(GPSyEnd,CultureInfo.InvariantCulture);
+                result.GPSxStart = Double.Parse(GPSxStart, CultureInfo.InvariantCulture);
+                result.GPSxEnd = Double.Parse(GPSxEnd, CultureInfo.InvariantCulture);
+                result.User = s;
+                result.Photo = Photo;
+                _context.SaveChanges();
+                ViewBag.Message = _context.Route;
+                return View("SeeRoutesRedirect", ViewBag.Message);
+            }
+           
+            NewRoute.Name = Name;
+            NewRoute.Distance = Double.Parse(Distance, CultureInfo.InvariantCulture);
+            NewRoute.GPSyStart = Double.Parse(GPSyStart, CultureInfo.InvariantCulture);
+            NewRoute.GPSyEnd = Double.Parse(GPSyEnd, CultureInfo.InvariantCulture);
+            NewRoute.GPSxStart = Double.Parse(GPSxStart, CultureInfo.InvariantCulture);
+            NewRoute.GPSxEnd =  Double.Parse(GPSxEnd, CultureInfo.InvariantCulture);
             NewRoute.User = s;
             NewRoute.Photo = Photo; 
             _context.Route.Add(NewRoute);
@@ -77,9 +95,14 @@ namespace JuliRennen.Controllers
 
 
         [HttpPost]
-        public ActionResult Index([FromForm] string PhotoData, [FromForm] string fileName, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
+        public ActionResult Index([FromForm] string RouteName, [FromForm] string PhotoData, [FromForm] string fileName, [FromForm] string Distance, [FromForm] string GPSyStart, [FromForm] string GPSyEnd, [FromForm] string GPSxStart, [FromForm] string GPSxEnd)
         {
             Route NewRoute = new Route();
+            if(RouteName != null) 
+            { NewRoute.Name = RouteName; } 
+            else
+            { RouteName = " "; }
+            NewRoute.Name = RouteName;
             NewRoute.Distance = Convert.ToDouble(Distance);
             NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);
             NewRoute.GPSyEnd = Convert.ToDouble(GPSyEnd);
@@ -100,7 +123,7 @@ namespace JuliRennen.Controllers
             NewRoute.Photo = filepath;
             ViewBag.Message = NewRoute;
             TempData["Photo"] = filepath;
-            
+            TempData["RouteName"] = RouteName;
             return View();
         }
 

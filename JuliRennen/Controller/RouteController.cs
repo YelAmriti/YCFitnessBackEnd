@@ -99,7 +99,7 @@ namespace JuliRennen.Controllers
             if(RouteName != null) 
             { NewRoute.Name = RouteName; } 
             else
-            { RouteName = " "; }
+            { RouteName = ""; }
             NewRoute.Name = RouteName;
             NewRoute.Distance = Convert.ToDouble(Distance);
             NewRoute.GPSyStart = Convert.ToDouble(GPSyStart);

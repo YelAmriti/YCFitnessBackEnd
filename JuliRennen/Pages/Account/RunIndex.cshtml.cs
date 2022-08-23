@@ -7,16 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JuliRennen.Data;
 using JuliRennen.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace JuliRennen.Pages.Runs
 {
-    [Authorize]
-    public class IndexModel : PageModel
+    public class RunIndexModel : PageModel
     {
         private readonly JuliRennen.Data.JuliRennenContext _context;
 
-        public IndexModel(JuliRennen.Data.JuliRennenContext context)
+        public RunIndexModel(JuliRennen.Data.JuliRennenContext context)
         {
             _context = context;
         }
@@ -25,9 +23,11 @@ namespace JuliRennen.Pages.Runs
 
         public async Task OnGetAsync()
         {
+            var id = HttpContext.Session.GetInt32("UserID");
+
             if (_context.Run != null)
             {
-                Run = await _context.Run.ToListAsync();
+                Run = await _context.Run.Where(run => run.User.ID == id).ToListAsync();
             }
         }
     }

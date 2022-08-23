@@ -21,6 +21,7 @@ namespace JuliRennen.Pages.Account
 
         public User User { get; set; } = default!;
         public IList<JuliRennen.Models.Route> Route { get; set; } = default!;
+        public IList<JuliRennen.Models.Run> Run { get; set; } = default!;
         public async Task<IActionResult> OnGetAsync()
         {
             var id = HttpContext.Session.GetInt32("UserID");
@@ -35,6 +36,10 @@ namespace JuliRennen.Pages.Account
             if (_context.Route != null)
             {
                 Route = await _context.Route.Where(route => route.User.ID == id).ToListAsync();
+            }
+            if (_context.Run != null)
+            {
+                Run = await _context.Run.Where(run => run.User.ID == id).ToListAsync();
             }
 
             if (user == null)

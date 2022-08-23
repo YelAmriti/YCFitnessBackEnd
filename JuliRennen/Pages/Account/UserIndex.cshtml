@@ -53,35 +53,79 @@
             </a>             
         </div>
     </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Route[0].Photo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Route[0].Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Route[0].Distance)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Route) {
+    <div>        
+        <a class="btn btn-primary" asp-page="./RouteIndex">Mijn routes</a>
+        <a class="btn btn-warning" href="https://nice-sea-088835f03.1.azurestaticapps.net/gps/voorbeeld.html">Route maken</a>
+        
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        <img class="card-img"src="@item.Photo" style="height: 100px; width: 150px;"/>
-                    </td>            
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Distance)
-                    </td>
+                    <th>
+                        Foto
+                    </th>
+                    <th>
+                        Naam
+                    </th>
+                    <th>
+                        Afstand
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Route) {
+                    <tr>
+                        <td>
+                            <img class="card-img"src="@item.Photo" style="height: 100px; width: 150px;"/>
+                        </td>            
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Distance)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" asp-page="./RunIndex">Mijn runs</a>
+        <a class="btn btn-warning" asp-page="/Runs/Create">Run maken</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Route
+                    </th>
+                    <th>
+                        Afstand
+                    </th>
+                    <th>
+                        Tijd
+                    </th>
+                    <th>
+                        Rating
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Run) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Route.Name)
+                        </td>            
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Route.Distance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rating)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

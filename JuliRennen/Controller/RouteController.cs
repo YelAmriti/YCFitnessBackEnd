@@ -41,14 +41,12 @@ namespace JuliRennen.Controllers
         public JsonResult GetSpecificRoute(string data)
         {
 
-            foreach (Route route in _context.Route)
+            if (_context.Route.Any(o => o.Name == data))
             {
-                if(route.Name == data)
-                {
-                    return Json(route);
-                }
+                var result = _context.Route.SingleOrDefault((o => o.Name == data));
+                return Json(result);
             }
-            return Json("No Route found");
+                return Json("No Route found");
         }
 
 

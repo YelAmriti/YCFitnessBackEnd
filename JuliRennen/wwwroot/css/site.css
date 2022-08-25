@@ -71,7 +71,6 @@ for details on configuring this project to bundle and minify static web assets. 
 
 a.navbar-brand {
     white-space: normal;
-    font-family: 'Yellowtail', cursive;
     font-size: xx-large;
     text-align: center;
     word-break: break-all;
@@ -169,51 +168,50 @@ ul {
     background: -moz-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
     background: linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
 }
-
-/* Dropdown Button */
-.dropbtn {
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
+.stopwatch-wrapper {
     position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    bottom: 164px;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px 12px 0;
+    width: fit-content;
+    padding: 10px;
+    background: rgba(255, 155, 255, 0.4);
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+.stopwatch {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 60px;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #ddd
+.control-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
-    display: block;
-} 
+.control-buttons-wrapper button {
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 25px;
+    margin: 0 10px;
+    padding: 3px 8px;
+}
+
+.control-buttons-wrapper button:active {
+    opacity: 0.7;
+}
+
+#clear-button {
+    background: rgb(187, 187, 187);
+}
+
+#main-button {
+    background: rgb(0, 146, 231);
+}

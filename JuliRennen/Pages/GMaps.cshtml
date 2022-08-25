@@ -1,0 +1,28 @@
+﻿@page
+@model JuliRennen.Pages.GMapsModel
+@{
+    ViewData["Title"] = "GMaps";
+}
+<h1>GMaps API (bèta)</h1>
+<div class="row">
+    <div class="coll-md-6">
+        <div id="map" style="height:600px; width:1000px;"></div>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAieiuuyJ1TFmWqc-MXWBmhV0ynZjhQUzE&callback=initMap&v=weekly"
+            defer
+            ></script>
+    </div>
+    <div id="stopwrap" class="stopwatch-wrapper">
+      <p class="stopwatch">00:00:00:00</p>
+      <div id="butwrap" class="control-buttons-wrapper">
+        <button id="main-button" class="control-buttons">Start</button>
+        <button id="clear-button" class="control-buttons">Clear</button>
+      </div>
+    </div>
+    <div class="form-group" style="position: relative; bottom:150px;">
+        <label class="control-label">Route:</label>
+        <select asp-for="RouteID" id="selectList" class="form-control" asp-items="Model.Options" onchange="setRoute()">
+            <option value="">Select route</option>
+        </select>
+    </div>    
+</div>

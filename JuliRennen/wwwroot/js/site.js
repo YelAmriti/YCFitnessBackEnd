@@ -1,4 +1,16 @@
-﻿let map;
+﻿/* JS code for seeRoute page */
+
+$(document).ready(function () {
+    $('.card-img').each(function () {
+        $('img').each(function () {
+            $(this).attr('src', $(this).attr('src').replace('wwwroot', '..'));
+        })
+    })
+});
+
+
+// JS code for GMaps API
+let map;
 let pos1 = { lat: 0, lng: 0 };
 let markers = [];
 let lastKnown = { lat: 0, lng: 0 };
